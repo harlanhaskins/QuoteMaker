@@ -3,6 +3,7 @@
 var frontendUrl = "http://cardgage.harlanhaskins.com";
 var apiUrl = "http://cardgage.harlanhaskins.com/api/quotes";
 var twitterUrl = "http://twitter.com/share";
+var facebookUrl = "http://www.facebook.com/sharer.php";
 
 function getQuote() {
 	$.ajax({
@@ -11,7 +12,8 @@ function getQuote() {
 		success: function(r) {
 			var quote = r.quotes[0];
 			$("#quote").html("\""+quote+"\"")
-			$("#twitter").attr("href", twitterUrl + "?text=\"" + quote + "\"" + "&hashtags=CardgageQuotes&url=" + frontendUrl);
+			$("#twitter").attr("href", twitterUrl + "?text=\"" + quote + "\"&hashtags=CardgageQuotes&url=" + frontendUrl);
+			$("#facebook").attr("href", facebookUrl + "?t=" + quote + "&u=" + frontendUrl);
 		},
 		error: function(e) {
 			console.error(e);
