@@ -1,14 +1,17 @@
-(function($) {
+(function($, console) {
 
-var url = "http://cardkov.harlanhaskins.com/api/quotes";
+var frontendUrl = "http://cardgage.harlanhaskins.com";
+var apiUrl = "http://cardgage.harlanhaskins.com/api/quotes";
+var twitterUrl = "http://twitter.com/share";
 
 function getQuote() {
 	$.ajax({
-		url: url,
+		url: apiUrl,
 		method: "GET",
 		success: function(r) {
 			var quote = r.quotes[0];
 			$("#quote").html("\""+quote+"\"")
+			$("#twitter").attr("href", twitterUrl + "?text=\"" + quote + "\"" + "&hashtags=CardgageQuotes&url=" + frontendUrl);
 		},
 		error: function(e) {
 			console.error(e);
@@ -22,4 +25,4 @@ $(document).on("ready", function(e) {
 	$("#generate").on("click", getQuote);
 });
 
-})(jQuery);
+})(jQuery, window.console);
