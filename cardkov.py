@@ -11,5 +11,3 @@ def new_string():
 
 mc = MarkovChain("./markov")
 mc.generateDatabase("".join(quotes()))
-
-print new_string()
