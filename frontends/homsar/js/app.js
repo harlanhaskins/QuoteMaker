@@ -1,7 +1,7 @@
 (function($, console) {
 
-var frontendUrl = "http://cardgage.harlanhaskins.com";
-var apiUrl = "http://cardgage.harlanhaskins.com/api/quotes";
+var frontendUrl = "http://homsar.harlanhaskins.com";
+var apiUrl = "http://cardgage.harlanhaskins.com/api/quotes/homsar";
 var twitterUrl = "http://twitter.com/share";
 var facebookUrl = "http://www.facebook.com/sharer.php";
 
