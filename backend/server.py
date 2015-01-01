@@ -47,4 +47,4 @@ if __name__ == "__main__":
     parser.add_argument("-t", "--test", help="Runs flask in debug mode.",
                           action="store_true")
     args = parser.parse_args()
-    app.run(host="0.0.0.0", port=5586 if args.test else 5585, debug=args.test)
+    # app.run(host="0.0.0.0", port=5586 if args.test else 5585, debug=args.test)
