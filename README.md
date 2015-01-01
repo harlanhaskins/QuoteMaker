@@ -5,7 +5,7 @@ quotes using a Markov Chain Generator trained on his quotes.
 
 ## Installation
 
-This program uses `flask` and `PyMarkovChain`.
+This program uses `flask`, `flask-cors`, `argparse`, and `PyMarkovChain`.
 
 `pip install -r requirements.txt`
 
