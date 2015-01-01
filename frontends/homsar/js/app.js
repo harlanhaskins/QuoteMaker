@@ -12,7 +12,7 @@ function getQuote() {
 		success: function(r) {
 			var quote = r.quotes[0];
 			$("#quote").html("\""+quote+"\"")
-			$("#twitter").attr("href", twitterUrl + "?text=\"" + quote + "\"&hashtags=CardgageQuotes&url=" + frontendUrl);
+			$("#twitter").attr("href", twitterUrl + "?text=\"" + quote + "\"&hashtags=HomsarQuotes&url=" + frontendUrl);
 			$("#facebook").attr("href", facebookUrl + "?t=" + quote + "&u=" + frontendUrl);
 		},
 		error: function(e) {
