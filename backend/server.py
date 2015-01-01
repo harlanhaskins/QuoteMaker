@@ -2,6 +2,7 @@ from flask import Flask, jsonify, request, Response
 from flask_cors import CORS
 import argparse
 from homestarkov import Homestarkov
+from hitcounter import HitCounter
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -13,7 +14,13 @@ characters = {
     "homsar": Homestarkov("homsar")
 }
 
+hits_counter = HitCounter()
+
 max_quotes = 100
+
+@app.before_request
+def log_hit():
+    hits_counter.add_hit()
 
 @app.route(base + "/quotes/<character>", methods=["GET"])
 def quote(character):
@@ -31,9 +38,13 @@ def quote(character):
 
     return jsonify(quotes=quotes)
 
+@app.teardown_request
+def print_count(*args):
+    print(len(hits_counter))
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("-t", "--test", help="Runs flask in debug mode.",
                           action="store_true")
     args = parser.parse_args()
-    app.run(host="0.0.0.0", port=5585, debug=args.test)
+    app.run(host="0.0.0.0", port=5586 if args.test else 5585, debug=args.test)
