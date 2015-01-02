@@ -1,11 +1,12 @@
-# CardgageMarkov
+# Homestarkov
 
-This is an in progress application to generate [Senor Cardgage]()
-quotes using a Markov Chain Generator trained on his quotes.
+This is an in progress application to generate
+[Homestar Runner](http://homestarrunner.com) character quotes using a
+Markov Chain Generator trained on various characters' quotes.
 
 ## Installation
 
-This program uses `flask` and `PyMarkovChain`.
+This program uses `flask`, `flask-cors`, `argparse`, and `PyMarkovChain`.
 
 `pip install -r requirements.txt`
 
@@ -15,8 +16,8 @@ Just run `python server.py`
 
 ## Thanks
 
-Special thanks to 
-[The Brothers Chaps](http://www.hrwiki.org/wiki/The_Brothers_Chaps) 
+Special thanks to
+[The Brothers Chaps](http://www.hrwiki.org/wiki/The_Brothers_Chaps)
 for making such an amazing piece of internet history (and internet present!)
 
 Special thanks, as well, to [hrwiki](http://hrwiki.org) user
