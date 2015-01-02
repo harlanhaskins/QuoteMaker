@@ -8,19 +8,26 @@ cors = CORS(app)
 
 base = "/api"
 
-characters = {
-    "cardgage": Homestarkov("cardgage"),
-    "homsar": Homestarkov("homsar")
+_characters = {
+    "cardgage": Homestarkov("cardgage", "Senor Cardgage",
+        "Dump Tell No Mandy!"),
+    "homsar": Homestarkov("homsar", "Homsar", "Legitimate Business!")
 }
 
 max_quotes = 100
 
+@app.route(base + "/characters", methods=["GET"])
+def characters():
+    character_list = [c.json_object() for c in _characters.values()]
+    return jsonify(characters=character_list)
+
+
 @app.route(base + "/quotes/<character>", methods=["GET"])
 def quote(character):
-    if not character in characters:
+    if not character in _characters:
         return make_response("Invalid character: %s" % character, 401)
 
-    markov = characters[character]
+    markov = _characters[character]
 
     count_string = request.args.get("count", "1")
     count = int(count_string) if count_string.isdigit() else 1
