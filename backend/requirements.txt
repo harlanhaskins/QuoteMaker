@@ -3,4 +3,4 @@ PyMarkovChain>=1.7.5
 flask-cors
 argparse
 gunicorn
-supervisord
+supervisor
