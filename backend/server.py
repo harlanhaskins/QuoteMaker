@@ -26,7 +26,7 @@ def log_hit():
 @app.route(base + "/characters", methods=["GET"])
 def characters():
     character_list = [c.json_object() for c in _characters.values()]
-    return Response(json.dumps(character_list), mimetype="application/json")
+    return jsonify(characters=character_list)
 
 @app.route(base + "/quotes/<character>", methods=["GET"])
 def quote(character):
