@@ -20,21 +20,35 @@ The server exposes a RESTful JSON API.
 
 Endpoints are as follows:
 
-### GET `/characters`
+### `GET /api/characters`
 
 ```json
-[
-  {
-    "name": "Homsar",
-    "path": "homsar",
-    "tagline": "Legitimate Business!"
-  },
-  {
-    "name": "Senor Cardgage",
-    "path": "cardgage",
-    "tagline": "Dump Tell No Mandy!"
-  }
-]
+{
+  "characters": [
+    {
+      "name": "Homsar",
+      "path": "homsar",
+      "tagline": "Legitimate Business!"
+    },
+    {
+      "name": "Senor Cardgage",
+      "path": "cardgage",
+      "tagline": "Dump Tell No Mandy!"
+    }
+  ]
+}
+```
+
+### `GET /api/quotes/:character` where `:character` is `characters[n].path`
+
+### Example request `GET /api/quotes/cardgage`
+
+```json
+{
+  "quotes": [
+    "I'm just me, can't you for soccer class, Debra"
+  ]
+}
 ```
 
 ## Thanks
