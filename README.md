@@ -14,6 +14,29 @@ This program uses `flask`, `flask-cors`, `argparse`, and `PyMarkovChain`.
 
 Just run `python server.py`
 
+## API
+
+The server exposes a RESTful JSON API.
+
+Endpoints are as follows:
+
+### GET `/characters`
+
+```json
+[
+  {
+    "name": "Homsar",
+    "path": "homsar",
+    "tagline": "Legitimate Business!"
+  },
+  {
+    "name": "Senor Cardgage",
+    "path": "cardgage",
+    "tagline": "Dump Tell No Mandy!"
+  }
+]
+```
+
 ## Thanks
 
 Special thanks to

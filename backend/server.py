@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, Response
+from flask import Flask, jsonify, request, Response, json, make_response
 from flask_cors import CORS
 import argparse
 from homestarkov import Homestarkov
@@ -26,7 +26,7 @@ def log_hit():
 @app.route(base + "/characters", methods=["GET"])
 def characters():
     character_list = [c.json_object() for c in _characters.values()]
-    return jsonify(characters=character_list)
+    return Response(json.dumps(character_list), mimetype="application/json")
 
 @app.route(base + "/quotes/<character>", methods=["GET"])
 def quote(character):
@@ -53,4 +53,4 @@ if __name__ == "__main__":
     parser.add_argument("-t", "--test", help="Runs flask in debug mode.",
                           action="store_true")
     args = parser.parse_args()
-    # app.run(host="0.0.0.0", port=5586 if args.test else 5585, debug=args.test)
+    app.run(host="0.0.0.0", port=5586 if args.test else 5585, debug=args.test)
