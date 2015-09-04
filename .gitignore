@@ -2,6 +2,6 @@ markov-*
 *.pyc
 *.conf
 *.txt
-.sqlite3
+*.sqlite3
 /markovgeneratorfiles
 .virtualenv
