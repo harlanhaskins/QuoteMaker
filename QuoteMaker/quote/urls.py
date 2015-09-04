@@ -1,6 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.contrib.auth import views as auth_views
 from . import views
+from . import api
 
 # Make sure to end each URL pattern with '/?$' to make sure the end of the url
 # properly handles omitting the trailing slash.

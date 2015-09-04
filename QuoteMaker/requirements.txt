@@ -1,8 +1,4 @@
-flask>=0.10.1
 PyMarkovChain>=1.7.5
-flask-cors
 argparse
-gunicorn
-supervisor
-peewee
 pylru
+django

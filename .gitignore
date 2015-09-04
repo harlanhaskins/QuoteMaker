@@ -4,3 +4,4 @@ markov-*
 *.txt
 .sqlite3
 /markovgeneratorfiles
+.virtualenv
