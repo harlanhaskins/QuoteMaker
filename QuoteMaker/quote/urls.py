@@ -9,6 +9,7 @@ urlpatterns = patterns('',
     url(r'logout/?$', views.logout_view, name='logout'),
     url(r'signup/?$', views.signup, name='signup'),
     url(r'create/?$', views.create, name='create'),
+    url(r'api/quotes/(?P<path>.+)/?$', api.quote, name='api_quote'),
     url(r'(?P<path>.+)/?$', views.quote, name='quote'),
     url(r'^/?$', views.home, name='home'),
 )
