@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Create A QuoteMaker{% endblock %}
+
+{% block content %}
+<div class="row">
+    <form action="" method="post" accept-charset="utf-8" class="form" role="form">
+        {% csrf_token %}
+        <label>Name</label>
+        <div class="row">
+            <div class="col-xs-4 col-md-4">
+                <input type="text" name="name" class="form-control" placeholder="Name" required />
+            </div>
+            <div class="col-xs-8 col-md-8">
+                <input type="text" name="tagline" class="form-control" placeholder="Tagline" required />
+            </div>
+        </div>
+        <label>Quotes</label>
+        <textarea name="corpus" class="form-control" placeholder="An existing body of quotes from this person" required>
+        </textarea>
+        <br />
+        </div>
+        <br />
+        <button class="btn btn-lg btn-primary btn-block signup-btn" type="submit">
+            Save
+        </button>
+    </form>
+</div>
+{% endblock %}
