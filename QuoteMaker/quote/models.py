@@ -23,9 +23,15 @@ class Homestarkov(models.Model):
     name = models.CharField(max_length=255)
     tagline = models.CharField(max_length=255)
     corpus = models.TextField()
+    submitter = models.ForeignKey(User)
+    active = models.BooleanField(default=True)
 
     def new_string(self):
         return MarkovCache.get(self.path).generateString()
+
+    def deactivate(self):
+        self.active = False
+        self.save()
 
     def json_object(self):
         return {

@@ -82,3 +82,31 @@ select {
    -moz-appearance: none;
    appearance: none;
 }
+
+
+.remove {
+    position: relative;
+    float: right;
+    top: 0px;
+    right: -10px;
+    font-size: 16;
+}
+
+.unstyled-button {
+    background: transparent;
+    border: none;
+    outline: 0;
+}
+
+.remove-button {
+    background: transparent;
+    border: none;
+    outline: 0;
+    color: rgba(0, 0, 0, 0.6)
+}
+
+.remove-button:hover {
+    color: #000;
+   transition: color .1s ease-in;
+   -webkit-transition: color .1s ease-in;
+}

@@ -4,42 +4,42 @@
 {% block title %}{{character.name}} Quote Generator{% endblock %}
 {% block extra %}
 <script>
-    var frontendUrl = "http://quotemaker.co/{{ character.path }}";
-    var apiUrl = "http://quotemaker.co/api/quotes/{{ character.path }}";
+var frontendUrl = "http://quotemaker.co/{{ character.path }}";
+var apiUrl = "http://quotemaker.co/api/quotes/{{ character.path }}";
 </script>
 {% endblock %}
 
 {% block content %}
-    <div class="row">
-        <div class="col-md-12">
-            <h1 class="title text-center">
-                {{ character.name }} Quote Generator<br>
-                <small>&quot;{{ character.tagline }}&quot;</small>
-            </h1>
-        </div>
+<div class="row">
+    <div class="col-md-12">
+        <h1 class="title text-center">
+            {{ character.name }} Quote Generator<br>
+            <small>&quot;{{ character.tagline }}&quot;</small>
+        </h1>
     </div>
     <br><br>
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="jumbotron">
-                <div class='text-center'>
-                    <h1 id="quote" class="mcgarg">
-                        &quot;{{ character.new_string }}&quot;
-                    </h1>
-                    <br><br>
-                    <button id="generate" onclick='$(this).getQuote();'class="btn btn-success btn-xl">More Please!</button>
-                </div>
-                <hr>
-                <div class='text-center'>
-                    <a id="twitter" class="btn btn-info" href="#" target="_blank">Tweet This!</a>
-                    <a id="facebook" class="btn btn-primary" href="#" target="_blank">Facebook It!</a>
+    <div class="col-md-8 col-md-offset-2">
+        <div class="jumbotron">
+            <div class='text-center'>
+                <h1 id="quote" class="mcgarg">
+                    &quot;{{ character.new_string }}&quot;
+                </h1>
+                <br><br>
+                <button id="generate" onclick='$(this).getQuote();'class="btn btn-success btn-xl">More Please!</button>
+            </div>
+            <hr>
+            <div class='text-center'>
+                <a id="twitter" class="btn btn-info" href="#" target="_blank">Tweet This!</a>
+                <a id="facebook" class="btn btn-primary" href="#" target="_blank">Facebook It!</a>
+                {% if user == character.submitter %}
+                <a class='btn btn-danger' href="{% url 'quote:delete' character.path %}">Delete</a>
+                {% endif %}
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-{% endblock %}
+    {% endblock %}
 
-{% block scripts %}
-<script src="{% static 'js/app.js' %}"></script>
-{% endblock %}
+    {% block scripts %}
+    <script src="{% static 'js/app.js' %}"></script>
+    {% endblock %}

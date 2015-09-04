@@ -17,11 +17,13 @@ class Command(BaseCommand):
 
 
     def _create_characters(self):
+
+        user = User.objects.get(username='harlan')
         Homestarkov.objects.all().delete()
 
         for name, filename, path, tagline in _characters:
             with open(filename) as corpus_file:
-                Homestarkov.objects.create(name=name, path=path, corpus=corpus_file.read(), tagline=tagline)
+                Homestarkov.objects.create(name=name, path=path, corpus=corpus_file.read(), tagline=tagline, submitter=user)
 
     def handle(self, *args, **options):
         self._create_characters()

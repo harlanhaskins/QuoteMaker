@@ -135,12 +135,39 @@ def quote(request, path):
 
 @login_required
 def create(request):
-    return render(request, 'create.html', {'user': request.user})
+    context = {'user': request.user}
+    if request.POST:
+        character, error = handle_create_quotemaker(request, request.POST)
+        if character:
+            return redirect('quote:quote', path=character.path)
+        elif error:
+            context['error_message'] = error
+        else:
+            context['error_message'] = 'Could not create quotemaker. Try again.'
+    return render(request, 'create.html', context)
+
+def handle_create_quotemaker(request, body):
+    name = body.get('name', '').strip()
+    tagline = body.get('tagline', '').strip()
+    corpus = body.get('corpus', '').strip()
+    if not all([name, body, corpus]):
+        return None, "All fields are required"
+    path = name.lower().replace(" ", '-')
+    character = Homestarkov.objects.create(name=name, corpus=corpus, path=path, tagline=tagline, submitter=request.user)
+    return character, None
+
+@login_required
+def delete(request, path):
+    character = get_object_or_404(Homestarkov, path=path)
+    if request.user != character.submitter:
+        raise PermissionDenied
+    character.deactivate()
+    return redirect('quote:home')
 
 
 def home(request):
     context = {
         'navbar': 'home',
-        'characters': Homestarkov.objects.all()
+        'characters': Homestarkov.objects.filter(active=True).all()
     }
     return render(request, 'list.html', context)
