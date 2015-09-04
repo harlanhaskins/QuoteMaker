@@ -25,6 +25,10 @@ $.fn.populateSocialMedia = function () {
     $("#facebook").attr("href", facebookUrl + "?t=" + quote + "&u=" + frontendUrl);
 }
 
+$(document).ready(function() {
+    $(this).populateSocialMedia();
+})
+
 })(jQuery, window.console);
 
 
