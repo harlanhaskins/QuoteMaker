@@ -1,26 +1,40 @@
 from pymarkovchain import MarkovChain
+from pylru import lrudecorator
+from peewee import *
 
-class Homestarkov(object):
-    def __init__(self, path, character_name, tagline):
-        self.path = path
-        self.character_name = character_name
-        self.tagline = tagline
-        self._generator = MarkovChain("./markov-%s" % path)
-        self._generator.generateDatabase("".join(self.quotes()))
+db = SqliteDatabase('homestarkov.db', threadlocals=True)
 
-    def quotes(self):
-        try:
-            with open(self.path + ".txt") as corpus_file:
-                return corpus_file.readlines()
-        except IOError:
-            return []
+class MarkovCache(object):
+    @classmethod
+    @lrudecorator(100)
+    def get(cls, path):
+        query = Homestarkov.select().where(Homestarkov.path == path)
+        if not query.exists():
+            return None
+        character = query.first()
+        _generator = MarkovChain("./markovgeneratorfiles/markov-%s" % path)
+        _generator.generateDatabase(character.corpus)
+        return _generator
+
+class BaseModel(Model):
+    class Meta:
+        database = db
+
+class Homestarkov(BaseModel):
+    path = CharField(unique=True)
+    name = CharField()
+    tagline = CharField()
+    corpus = TextField()
 
     def new_string(self):
-        return self._generator.generateString()
+        return MarkovCache.get(self.path).generateString()
 
     def json_object(self):
         return {
-            "name": self.character_name,
+            "name": self.name,
             "path": self.path,
             "tagline": self.tagline
         }
+
+db.connect()
+Homestarkov.create_table(fail_silently=True)

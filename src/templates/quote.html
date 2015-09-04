@@ -1,34 +1,18 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="">
-	<meta name="keywords" content="">
-	<meta name="author" content="">
-    <title>{{character.character_name}} Quote Generator</title>
-	<!-- Styles -->
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-	<style>
-		body {
-			padding-top: 10px;
-			padding-bottom: 10px;
-		}
-	</style>
+{% extends 'base.html' %}
+
+    {% block title %}{{character.name}} Quote Generator{% endblock %}
+    {% block head_extra %}
     <script>
         var frontendUrl = "http://quotemaker.co/{{ character.path }}";
         var apiUrl = "http://quotemaker.co/api/quotes/{{ character.path }}";
     </script>
-</head>
-<body>
-	<!-- Content -->
-	<div class="container center">
+    {% endblock %}
+
+    {% block body %}
 		<div class="row">
 			<div class="col-md-12">
-		 		<h1 class="bauhaus title">
-                    {{ character.character_name }} Quote Generator<br>
+		 		<h1 class="title">
+                    {{ character.name }} Quote Generator<br>
                     <small>&quot;{{ character.tagline }}!&quot;</small>
 		 		</h1>
 		 	</div>
@@ -46,26 +30,11 @@
 	 				<a id="twitter" class="btn btn-info" href="#" target="_blank">Tweet This!</a>
 	 				<a id="facebook" class="btn btn-primary" href="#" target="_blank">Facebook It!</a>
 	 			</div>
-	 			<br>
-	 			<div class="gray">
-	 				<p>Check it out on <a href="https://github.com/harlanhaskins/Homestarkov">GitHub</a></p>
-	 			</div>
 	 		</div>
 	 	</div>
 	</div>
-	<!-- Scripts -->
-	<script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
-	<script src="//netdna.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    {% endblock %}
+
+    {% block scripts %}
     <script src="{{ url_for('static', filename='js/app.js') }}"></script>
-	<script>
-	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-	  ga('create', 'UA-22479051-2', 'auto');
-	  ga('send', 'pageview');
-
-	</script>
-</body>
-</html>
+    {% endblock %}

@@ -1,28 +1,20 @@
-@font-face {
-	font-family: "bauhaus93";
-	src: url(../fonts/bauhaus93.ttf);
-}
-@font-face {
-	font-family: "mcgarg";
-	src: url(../fonts/mcgarg.ttf);
-}
-.bauhaus {
-	font-family: "bauhaus93";
-}
-.mcgarg {
-	font-family: "mcgarg";
-}
-body {
-    font-family: -apple-system, sans-serif;
-}
 .center {
 	text-align: center;
 }
 .title {
 	font-size: 4em;
 }
+.subtitle {
+    font-style: italic;
+    font-size: 12pt;
+}
+.name {
+    font-style: bold;
+    font-size: 24pt;
+}
 #quote {
-
+    font-family: 'Quattrocento', inherit;
+    font-size: 36pt;
 }
 .btn-xl {
 	height: 75px;
