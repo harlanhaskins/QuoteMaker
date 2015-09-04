@@ -12,6 +12,9 @@
 .mcgarg {
 	font-family: "mcgarg";
 }
+body {
+    font-family: -apple-system, sans-serif;
+}
 .center {
 	text-align: center;
 }

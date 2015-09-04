@@ -7,16 +7,20 @@
 	<meta name="description" content="">
 	<meta name="keywords" content="">
 	<meta name="author" content="">
-	<title>Senor Cardgage Quote Generator</title>
+    <title>{{character.character_name}} Quote Generator</title>
 	<!-- Styles -->
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 	<style>
 		body {
 			padding-top: 10px;
 			padding-bottom: 10px;
 		}
 	</style>
+    <script>
+        var frontendUrl = "http://quotemaker.co/{{ character.path }}";
+        var apiUrl = "http://quotemaker.co/api/quotes/{{ character.path }}";
+    </script>
 </head>
 <body>
 	<!-- Content -->
@@ -24,40 +28,35 @@
 		<div class="row">
 			<div class="col-md-12">
 		 		<h1 class="bauhaus title">
-		 			Senor Cardgage Quote Generator<br>
-		 			<small>&quot;Dump Tell No Mandy!&quot;</small>
+                    {{ character.character_name }} Quote Generator<br>
+                    <small>&quot;{{ character.tagline }}!&quot;</small>
 		 		</h1>
 		 	</div>
 		</div>
 		<br><br>
  		<div class="row">
-	 		<div class="col-md-8">
+	 		<div class="col-md-8 col-md-offset-2">
 	 			<div class="jumbotron">
 	 				<h1 id="quote" class="mcgarg">
-	 					&quot;&quot;
+                        &quot;{{ character.new_string() }}&quot;
 	 				</h1>
 	 				<br><br>
-	 				<button id="generate" class="btn btn-success btn-xl">More Please!</button>
+	 				<button id="generate" onclick='$(this).getQuote();'class="btn btn-success btn-xl">More Please!</button>
 	 				<hr>
 	 				<a id="twitter" class="btn btn-info" href="#" target="_blank">Tweet This!</a>
 	 				<a id="facebook" class="btn btn-primary" href="#" target="_blank">Facebook It!</a>
 	 			</div>
 	 			<br>
 	 			<div class="gray">
-	 				<p>&quot;Senor Cardgage&quot; Copyright 20XX <a href="http://homestarrunner.com">The Brothers Chaps</a> (Or Whatever)</p>
-	 				<p>Image(s) borrowed from <a href="http://www.hrwiki.org/wiki/Main_Page">hrwiki.org</a></p>
 	 				<p>Check it out on <a href="https://github.com/harlanhaskins/Homestarkov">GitHub</a></p>
 	 			</div>
-	 		</div>
-	 		<div class="col-md-4">
-	 			<img src="img/Can_of_Peas.png"/>
 	 		</div>
 	 	</div>
 	</div>
 	<!-- Scripts -->
 	<script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
 	<script src="//netdna.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-	<script src="js/app.js"></script>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
 	<script>
 	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
