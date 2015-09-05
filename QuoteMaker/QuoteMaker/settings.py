@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = 'x_p!s9fcx+ra!wb-%kmlr*c^=q%6*4pq#7lldts75_1j-$mp4l'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 TEMPLATE_DEBUG = DEBUG
 
@@ -82,5 +82,6 @@ USE_TZ = True
 LOGIN_URL = '/login/'
 
 STATIC_URL = '/static/'
+STATIC_ROOT = '/var/www/quotemaker.co/static/'
 
 SESSION_COOKIE_SECURE = not DEBUG

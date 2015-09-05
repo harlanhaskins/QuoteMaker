@@ -9,6 +9,7 @@ _characters = [
     ('Homsar', 'homsar.txt', 'homsar', 'Legitimate Business!'),
     ('Hacker News', 'hackernews.txt', 'hackernews', 'Presented by Y Combinator!'),
     ('Drew Gottlieb', 'drewgottlieb.txt', 'drew', 'Hmm.'),
+    ('George Costanza', 'george.txt', 'costanza', 'Moops!'),
 ]
 
 class Command(BaseCommand):

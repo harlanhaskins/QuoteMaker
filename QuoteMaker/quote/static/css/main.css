@@ -2,11 +2,11 @@
 	text-align: center;
 }
 .title {
-	font-size: 4em;
+	font-size: 4rem;
 }
 .subtitle {
     font-style: italic;
-    font-size: 12pt;
+    font-size: 2rem;
 }
 .name {
     font-style: bold;
