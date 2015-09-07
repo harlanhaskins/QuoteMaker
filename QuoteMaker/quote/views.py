@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.core.exceptions import PermissionDenied
 from django.contrib.auth import logout, login, authenticate
 from django.contrib.auth.decorators import login_required, user_passes_test
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from .form_utilities import *
 from .models import *
 import datetime
@@ -141,7 +141,7 @@ def create(request):
             context['error_message'] = error
         else:
             context['error_message'] = 'Could not create quotemaker. Try again.'
-    return render(request, 'create.html', context)
+    raise Http404
 
 def handle_create_quotemaker(request, body):
     name = body.get('name', '').strip()
@@ -152,6 +152,18 @@ def handle_create_quotemaker(request, body):
     path = name.lower().replace(" ", '-')
     character = Homestarkov.objects.create(name=name, corpus=corpus, path=path, tagline=tagline, submitter=request.user)
     return character, None
+
+
+def search(request):
+    query = None
+    if request.GET:
+        query = request.GET.get('q')
+
+    quotemakers = []
+    if query:
+        quotemakers = watson.filter(Homestarkov, query)
+    return render(request, 'search.html', {'user': request.user, 'characters': quotemakers})
+
 
 @login_required
 def delete(request, path):

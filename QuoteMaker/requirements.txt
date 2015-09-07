@@ -3,3 +3,4 @@ argparse
 pylru
 django
 django-cors-headers
+django-watson

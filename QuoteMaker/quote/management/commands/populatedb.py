@@ -1,6 +1,7 @@
 from django.core.management.base import BaseCommand
 from quote.models import *
 import datetime
+import sys
 
 
 _characters = [
@@ -16,10 +17,11 @@ class Command(BaseCommand):
     args = '<foo bar ...>'
     help = 'our help string comes here'
 
-
     def _create_characters(self):
-
-        user = User.objects.get(username='harlan')
+        email = 'harlan@harlanhaskins.com'
+        user = User.objects.create_superuser(username=email,
+                email=email, password=sys.argv[2],
+                first_name="Harlan", last_name="Haskins")
         Homestarkov.objects.all().delete()
 
         for name, filename, path, tagline in _characters:

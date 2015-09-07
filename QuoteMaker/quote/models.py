@@ -5,6 +5,7 @@ from datetime import timedelta
 from django.contrib.auth.models import User
 from pymarkovchain import MarkovChain
 from pylru import lrudecorator
+import watson
 
 class MarkovCache(object):
     @classmethod
@@ -39,3 +40,5 @@ class Homestarkov(models.Model):
             "path": self.path,
             "tagline": self.tagline
         }
+
+watson.register(Homestarkov.objects.filter(active=True))
