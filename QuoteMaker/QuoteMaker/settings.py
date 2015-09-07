@@ -1,5 +1,5 @@
 """
-Django settings for HealthNet project.
+Django settings for QuoteMaker project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.6/topics/settings/
@@ -24,10 +24,12 @@ DEBUG = False
 
 TEMPLATE_DEBUG = DEBUG
 
-ALLOWED_HOSTS = [] if DEBUG else [
-    '.quotemaker.co',
-    '.quotemaker.co.'
+ALLOWED_HOSTS = [
+    '*'
+    # '.quotemaker.co',
 ]
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 
 # Application definition
@@ -40,10 +42,12 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'quote',
+    'corsheaders'
 )
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',

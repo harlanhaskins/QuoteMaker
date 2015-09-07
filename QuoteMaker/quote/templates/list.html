@@ -1,7 +1,21 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="createLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            {% include 'create.html' %}
+        </div>
+    </div>
+</div>
 <h1 class='text-center'>Quote<strong>Maker</strong></h1>
+{% if user.is_authenticated %}
+<button type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#createModal'>
+    Create a Quote<strong>Maker</strong>
+</button>
+{% endif %}
+<br />
+<br />
 <div class='list-group'>
     {% for character in characters %}
     <a href='/{{ character.path }}' class='list-group-item col-md-6 col-sm-12'>

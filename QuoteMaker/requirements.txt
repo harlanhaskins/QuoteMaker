@@ -2,3 +2,4 @@ PyMarkovChain>=1.7.5
 argparse
 pylru
 django
+django-cors-headers

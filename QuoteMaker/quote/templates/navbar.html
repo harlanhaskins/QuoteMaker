@@ -11,9 +11,6 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                {% if user.is_authenticated %}
-                <li><a href="{% url 'quote:create' %}">Create</a></li>
-                {% endif %}
             </ul>
             {% if user.is_authenticated %}
                 <ul class="nav navbar-nav navbar-right">

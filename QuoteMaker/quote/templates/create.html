@@ -1,10 +1,9 @@
-{% extends 'base.html' %}
-
-{% block title %}Create A QuoteMaker{% endblock %}
-
-{% block content %}
-<div class="row">
-    <form action="" method="post" accept-charset="utf-8" class="form" role="form">
+<form action="create" method="post" accept-charset="utf-8" class="form" role="form">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="createLabel">Create a Quote<strong>Maker</strong></h4>
+    </div>
+    <div class="modal-body">
         {% csrf_token %}
         <label>Name</label>
         <div class="row">
@@ -17,10 +16,9 @@
         </div>
         <label>Quotes</label>
         <textarea name="corpus" class="form-control" placeholder="An existing body of quotes from this person" required></textarea>
-        </div>
-        <button class="btn btn-lg btn-primary btn-block signup-btn" type="submit">
-            Save
-        </button>
-    </form>
+    </div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+    <button class="btn btn-primary" type="submit">Save</button>
 </div>
-{% endblock %}
+</form>
