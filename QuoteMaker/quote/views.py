@@ -84,10 +84,7 @@ def signup(request):
     if request.POST:
         user, message = handle_user_form(request, request.POST)
         if user:
-            if request.user.is_authenticated():
-                return redirect('quote:signup')
-            else:
-                return redirect('quote:login')
+            return redirect('quote:login')
         elif message:
             context['error_message'] = message
     context['navbar'] = 'signup'
