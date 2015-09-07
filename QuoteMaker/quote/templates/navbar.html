@@ -11,6 +11,14 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
+                <form action="{% url 'quote:search' %}" class="navbar-form navbar-left" role="search">
+                    <div class='input-group'>
+                        <input name='q' type='text' class='form-control' placeholder='Name or Tagline' value='{% if q %}{{ q }}{% endif %}'></input>
+                        <span class='input-group-btn'>
+                            <button type='submit' class='btn btn-success'>Search</button>
+                        </span>
+                    </div>
+                </form>
             </ul>
             {% if user.is_authenticated %}
                 <ul class="nav navbar-nav navbar-right">

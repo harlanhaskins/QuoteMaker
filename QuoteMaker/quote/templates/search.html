@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Search{% endblock %}
+
+{% block content %}
+<form action="search" method="get" accept-charset="utf-8" class="form" role="form">
+    <div class='input-group'>
+        <input name='q' type='text' class='form-control' placeholder='Name or Tagline' value='{% if q %}{{ q }}{% endif %}'></input>
+        <span class='input-group-btn'>
+            <button type='submit' class='btn btn-primary'>Search</button>
+        </span>
+    </div>
+</form>
+<br />
+<div class='list-group'>
+    {% if characters %}
+        {% for character in characters %}
+            <a href="{% url 'quote:quote' character.path %}" class='list-group-item'>
+                <span class='name'>{{ character.name }}</span>
+                <br />
+                <span class='subtitle'>{{ character.tagline }}</span>
+            </a>
+        {% endfor %}
+    {% else %}
+    <h3 class='text-center'>{% if q %}No Results for &quot;{{ q }}&quot;{% else %}Enter a Search Term{% endif %}</h3>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block title %}404 Not Found{% endblock %}
+
+{% block content %}
+<h1 class='text-center'>404'd!</h1>
+<br />
+<h3 class='text-center'>That page doesn't exist. Maybe try going <a href="{% url 'quote:home' %}">home</a>?</h3>
+{% endblock %}

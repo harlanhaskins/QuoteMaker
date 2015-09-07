@@ -162,7 +162,7 @@ def search(request):
     quotemakers = []
     if query:
         quotemakers = watson.filter(Homestarkov, query)
-    return render(request, 'search.html', {'user': request.user, 'characters': quotemakers})
+    return render(request, 'search.html', {'user': request.user, 'characters': quotemakers, 'q': query})
 
 
 @login_required
