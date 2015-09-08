@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http import HttpResponse, Http404
 from .form_utilities import *
 from .models import *
+from path_maker import decode_id
 import datetime
 import json
 import time
@@ -126,7 +127,8 @@ def handle_user_form(request, body, user=None):
 
 
 def quote(request, path):
-    quotemaker = get_object_or_404(QuoteMaker, path=path)
+    identifier = decode_id(path)
+    quotemaker = get_object_or_404(QuoteMaker, pk=identifier, active=True)
     return render(request, 'quote.html', {'user': request.user, 'quotemaker': quotemaker})
 
 
@@ -149,8 +151,7 @@ def handle_create_quotemaker(request, body):
     corpus = body.get('corpus', '').strip()
     if not all([name, body, corpus]):
         return None, "All fields are required"
-    path = name.lower().replace(" ", '-')
-    quotemaker = QuoteMaker.objects.create(name=name, corpus=corpus, path=path, tagline=tagline, submitter=request.user)
+    quotemaker = QuoteMaker.objects.create(name=name, corpus=corpus, tagline=tagline, submitter=request.user)
     return quotemaker, None
 
 
@@ -170,7 +171,7 @@ def delete(request):
     path = None
     if request.POST:
         path = request.POST.get('path')
-        quotemaker = get_object_or_404(QuoteMaker, path=path)
+        quotemaker = get_object_or_404(QuoteMaker, pk=decode_id(path))
         if request.user == quotemaker.submitter or request.user.is_superuser:
             quotemaker.deactivate()
             return redirect('quote:home')

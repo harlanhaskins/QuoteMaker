@@ -5,13 +5,14 @@ from datetime import timedelta
 from django.contrib.auth.models import User
 from pymarkovchain import MarkovChain
 from pylru import lrudecorator
+import path_maker
 import watson
 
 class MarkovCache(object):
     @classmethod
     @lrudecorator(100)
     def get(cls, path):
-        query = QuoteMaker.objects.filter(path=path)
+        query = QuoteMaker.objects.filter(pk=path_maker.decode_id(path))
         if not query.exists():
             return None
         quotemaker = query.get()
@@ -20,7 +21,6 @@ class MarkovCache(object):
         return _generator
 
 class QuoteMaker(models.Model):
-    path = models.CharField(unique=True, max_length=255)
     name = models.CharField(max_length=255)
     tagline = models.CharField(max_length=255)
     corpus = models.TextField()
@@ -29,16 +29,19 @@ class QuoteMaker(models.Model):
     created_at = models.DateTimeField(auto_now=True)
 
     def new_string(self):
-        return MarkovCache.get(self.path).generateString()
+        return MarkovCache.get(self.path()).generateString()
 
     def deactivate(self):
         self.active = False
         self.save()
 
+    def path(self):
+        return path_maker.encode_id(self.pk)
+
     def json_object(self):
         return {
             "name": self.name,
-            "path": self.path,
+            "path": self.path(),
             "tagline": self.tagline
         }
 

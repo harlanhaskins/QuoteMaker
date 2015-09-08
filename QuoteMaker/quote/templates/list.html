@@ -17,7 +17,7 @@
 </h1>
 {% if user.is_authenticated %}
 <br/>
-<button id="new-quote" "type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#createModal'>
+<button id="new-quote" type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#createModal'>
     Create a Quote<strong>Maker</strong>
 </button>
 <br />
@@ -25,7 +25,7 @@
 <br />
 <div class='list-group'>
     {% for quotemaker in quotemakers %}
-    <a href='/{{ quotemaker.path }}' class='list-group-item col-md-6 col-sm-12'>
+    <a href='{% url 'quote:quote' quotemaker.path %}' class='list-group-item col-md-6 col-sm-12'>
         <span class='name'>{{ quotemaker.name }}</span>
         <br />
         <span class='subtitle'>{{ quotemaker.tagline }}</span>
