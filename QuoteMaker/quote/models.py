@@ -45,4 +45,9 @@ class QuoteMaker(models.Model):
             "tagline": self.tagline
         }
 
+    def attrs(self):
+        for field in self._meta.fields:
+            yield field.name, getattr(self, field.name)
+
+
 watson.register(QuoteMaker.objects.filter(active=True))

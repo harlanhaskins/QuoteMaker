@@ -61,18 +61,11 @@ var name = "{{ quotemaker.name }}";
         </div>
         {% if user.is_superuser %}
         <div class='list-group'>
+            {% for field, value in quotemaker.attrs %}
             <div class='list-group-item'>
-                Path: <pre>{{ quotemaker.path }}</pre>
+                {{ field }}: <pre>{{ value }}</pre>
             </div>
-            <div class='list-group-item'>
-                Name: <pre>{{ quotemaker.name }}</pre>
-            </div>
-            <div class='list-group-item'>
-                Tagline: <pre>{{ quotemaker.tagline }}</pre>
-            </div>
-            <div class='list-group-item'>
-                Corpus: <pre>{{ quotemaker.corpus}}</pre>
-            </div>
+            {% endfor %}
         </div>
         {% endif %}
     {% endblock %}
