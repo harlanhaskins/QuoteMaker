@@ -72,19 +72,19 @@ WSGI_APPLICATION = 'QuoteMaker.wsgi.application'
 #     }
 # }
 
-password = None
+config = None
 
 with open('config.json') as config_file:
-    password = json.load(config_file).get('password')
+    config = json.load(config_file)
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'quotemaker',
-        'USER': 'quotemaker',
-        'PASSWORD': password,
-        'HOST': '',
-        'PORT': '',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': config.get('name'),
+        'USER': config.get('user'),
+        'PASSWORD': config.get('password'),
+        'HOST': config.get('host'),
+        'PORT': config.get('port'),
     }
 }
 

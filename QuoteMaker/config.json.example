@@ -1,3 +1,7 @@
 {
-    "password": "SuperSecurePassword1234"
+    "password": "",
+    "host": "localhost",
+    "user": "quotemaker",
+    "name": "quotemaker",
+    "port": ""
 }
