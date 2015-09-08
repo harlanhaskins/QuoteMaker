@@ -16,7 +16,7 @@ class MarkovCache(object):
         if not query.exists():
             return None
         quotemaker = query.get()
-        _generator = MarkovChain("./markovgeneratorfiles/markov-%s" % path)
+        _generator = MarkovChain("markovgeneratorfiles/%s.markov" % path)
         _generator.generateDatabase(quotemaker.corpus)
         return _generator
 
