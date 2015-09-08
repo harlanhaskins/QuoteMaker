@@ -4,3 +4,4 @@ pylru
 django
 django-cors-headers
 django-watson
+psycopg2

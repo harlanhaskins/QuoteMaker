@@ -10,6 +10,7 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import json
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -64,10 +65,26 @@ WSGI_APPLICATION = 'QuoteMaker.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+
+password = None
+
+with open('config.json') as config_file:
+    password = json.load(config_file).get('password')
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'quotemaker',
+        'USER': 'quotemaker',
+        'PASSWORD': password,
+        'HOST': '',
+        'PORT': '',
     }
 }
 
