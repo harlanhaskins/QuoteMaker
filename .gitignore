@@ -6,6 +6,6 @@ markov-*
 .idea/
 config.json
 *.markov
-/quote/migrations
+/QuoteMaker/quote/migrations
 /markovgeneratorfiles
 .virtualenv
