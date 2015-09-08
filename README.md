@@ -1,63 +1,19 @@
-# Homestarkov
+# Quote*Maker*
 
-This is an in progress application to generate
-[Homestar Runner](http://homestarrunner.com) character quotes using a
-Markov Chain Generator trained on various characters' quotes.
+This is a Django webapp that allows you to create markov chain generators with a simple UI for creating generators.
 
 ## Installation
 
-This program uses `flask`, `flask-cors`, `argparse`, and `PyMarkovChain`.
+To install the dependencies, run
 
 `pip install -r requirements.txt`
 
 ## Usage
 
-Just run `python server.py`
+Just run
 
-## API
-
-The server exposes a RESTful JSON API.
-
-Endpoints are as follows:
-
-### `GET /api/characters`
-
-```json
-{
-  "characters": [
-    {
-      "name": "Homsar",
-      "path": "homsar",
-      "tagline": "Legitimate Business!"
-    },
-    {
-      "name": "Senor Cardgage",
-      "path": "cardgage",
-      "tagline": "Dump Tell No Mandy!"
-    }
-  ]
-}
+```bash
+python manage.py makemigrations
+python manage.py migrate
+python manage.py runserver
 ```
-
-### `GET /api/quotes/:character` where `:character` is `characters[n].path`
-
-### Example request `GET /api/quotes/cardgage`
-
-```json
-{
-  "quotes": [
-    "I'm just me, can't you for soccer class, Debra"
-  ]
-}
-```
-
-## Thanks
-
-Special thanks to
-[The Brothers Chaps](http://www.hrwiki.org/wiki/The_Brothers_Chaps)
-for making such an amazing piece of internet history (and internet present!)
-
-Special thanks, as well, to [hrwiki](http://hrwiki.org) user
-[DorianGray](http://www.hrwiki.org/wiki/User:DorianGray) for his awesome
-[compilation](http://www.hrwiki.org/wiki/User:DorianGray/Analysis_of_Senor_Cardgage%27s_Speech_Patterns)
-of Senor Cardgage quotes.

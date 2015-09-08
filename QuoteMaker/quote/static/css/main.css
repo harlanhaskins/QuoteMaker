@@ -42,6 +42,10 @@
     margin-bottom: 10px;
 }
 
+#search-btn {
+    border-width: 2px;
+}
+
 .confirm-password {
     margin-top: 0;
 }
