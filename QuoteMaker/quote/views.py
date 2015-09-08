@@ -162,7 +162,7 @@ def search(request):
 
     quotemakers = []
     if query:
-        quotemakers = watson.filter(QuoteMaker, query)
+        quotemakers = watson.filter(QuoteMaker.objects.filter(active=True), query)
     return render(request, 'search.html', {'user': request.user, 'quotemakers': quotemakers, 'q': query})
 
 

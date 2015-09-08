@@ -28,27 +28,10 @@
 	color: #80A3C2;
 }
 
-.form-wrap {
-    margin-top: 0px;
-    margin-bottom: 80px;
-}
-
-.form-control, .checkbox {
-    position: relative;
-    height: auto;
-    padding: 10px 20px;
-    font-size: 1.5rem;
-@include box-sizing(border-box);
-    margin-bottom: 10px;
-}
-
-#search-btn {
-    border-width: 2px;
-}
-
-.confirm-password {
-    margin-top: 0;
-}
+//.form-wrap {
+//    margin-top: 0px;
+//    margin-bottom: 80px;
+//}
 
 .field-pair-top {
     border-bottom-left-radius: 0px;

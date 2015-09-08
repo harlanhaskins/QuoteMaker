@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
- {% block title %}Home{% endblock %}
+{% block title %}Home{% endblock %}
 
 {% block content %}
 <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="createLabel">
@@ -15,13 +15,17 @@
     <br />
     <div id='about'><a href='https://github.com/harlanhaskins/QuoteMaker'>How does it work?</a></div>
 </h1>
-{% if user.is_authenticated %}
 <br/>
+{% if user.is_authenticated %}
 <button id="new-quote" type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#createModal'>
     Create a Quote<strong>Maker</strong>
 </button>
-<br />
+{% else %}
+<a href='{% url 'quote:signup' %}'id="new-quote" class='btn btn-primary btn-lg'>
+    Sign up to Create a Quote<strong>Maker</strong>
+</a>
 {% endif %}
+<br />
 <br />
 <div class='list-group'>
     {% for quotemaker in quotemakers %}
