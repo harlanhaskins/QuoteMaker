@@ -74,13 +74,6 @@ table a:not(.btn), .table a:not(.btn) {
     text-decoration: none;
 }
 
-form {
-    min-width: 320px;
-    max-width: 900px;
-    padding: 15px;
-    margin: 0 auto;
-}
-
 .container {
     max-width: 900px;
 }
@@ -95,29 +88,7 @@ select {
    appearance: none;
 }
 
-.remove {
-    position: relative;
-    float: right;
-    top: 0px;
-    right: -10px;
-    font-size: 16;
-}
-
-.unstyled-button {
-    background: transparent;
-    border: none;
-    outline: 0;
-}
-
-.remove-button {
-    background: transparent;
-    border: none;
-    outline: 0;
-    color: rgba(0, 0, 0, 0.6)
-}
-
-.remove-button:hover {
-    color: #000;
-   transition: color .1s ease-in;
-   -webkit-transition: color .1s ease-in;
+#about {
+    font-size: 1.5rem;
+    margin-top: 25px;
 }

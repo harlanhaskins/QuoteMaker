@@ -9,19 +9,27 @@
         </div>
     </div>
 </div>
-<h1 class='text-center'>Quote<strong>Maker</strong></h1>
+<h1 class='text-center'>Quote<strong>Maker</strong>
+    <br/>
+    <small>Automatically generate fake quotes that sound like whomever you like!</small>
+    <br />
+    <div id='about'><a href='https://github.com/harlanhaskins/QuoteMaker'>How does it work?</a></div>
+</h1>
 {% if user.is_authenticated %}
+<br/>
 <button type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#createModal'>
     Create a Quote<strong>Maker</strong>
 </button>
-{% endif %}
 <br />
+{% endif %}
 <br />
 <div class='list-group'>
     {% for quotemaker in quotemakers %}
     <a href='/{{ quotemaker.path }}' class='list-group-item col-md-6 col-sm-12'>
-        <span class='name'>{{ quotemaker.name }}</span><br /><span class='subtitle'>{{ quotemaker.tagline }}</span>
+        <span class='name'>{{ quotemaker.name }}</span>
+        <br />
+        <span class='subtitle'>{{ quotemaker.tagline }}</span>
     </a>
     {% endfor %}
-</div >
+</div>
 {% endblock %}
