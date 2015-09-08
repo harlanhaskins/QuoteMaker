@@ -13,7 +13,7 @@
     <br/>
     <small>Automatically generate fake quotes that sound like whomever you like!</small>
     <br />
-    <div id='about'><a href='https://github.com/harlanhaskins/QuoteMaker'>How does it work?</a></div>
+    <div id='about'><a href='{% url 'quote:about' %}'>How does it work?</a></div>
 </h1>
 <br/>
 {% if user.is_authenticated %}

@@ -179,6 +179,10 @@ def delete(request):
     raise Http404
 
 
+def about(request):
+    return render(request, 'about.html')
+
+
 def home(request):
     context = {
         'navbar': 'home',

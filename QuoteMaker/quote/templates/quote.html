@@ -4,13 +4,33 @@
 {% block title %}{{quotemaker.name}} Quote Generator{% endblock %}
 {% block extra %}
 <script>
-var frontendUrl = "https://quotemaker.co/{{ quotemaker.path }}";
-var apiUrl = "https://quotemaker.co/api/quotes/{{ quotemaker.path }}";
+var frontendUrl = "https://www.quotemaker.co/{{ quotemaker.path }}";
+var apiUrl = "https://www.quotemaker.co/api/quotes/{{ quotemaker.path }}";
 var name = "{{ quotemaker.name }}";
 </script>
 {% endblock %}
 
 {% block content %}
+<div class="modal fade" id="confirm-delete-modal" tabindex="-1" role="dialog" aria-labelledby="confirm-delete-label">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class='modal-header'>
+                <h4 class="modal-title" id="confirm-delete-label">Confirm Deletion</h4>
+            </div>
+            <div class='modal-body'>
+                Are you sure you want to delete &quot;{{ quotemaker.name }}&quot;?
+            </div>
+            <div class='modal-footer'>
+                <form action='{% url 'quote:delete' %}' method='post' charset='utf-8'>
+                    {% csrf_token %}
+                    <input type='hidden' name='path' value='{{ quotemaker.path }}' />
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button class='btn btn-danger' type='submit'>Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="row">
     <div class="col-md-12">
         <h1 id='quote-title' class="title text-center">
@@ -33,16 +53,28 @@ var name = "{{ quotemaker.name }}";
                 <a id="twitter" class="btn btn-info" href="#" target="_blank">Tweet This!</a>
                 <a id="facebook" class="btn btn-primary" href="#" target="_blank">Facebook It!</a>
                 {% if user == quotemaker.submitter or user.is_superuser %}
-                <form action='{% url 'quote:delete' %}' method='post' charset='utf-8'>
-                    {% csrf_token %}
-                    <input type='hidden' name='path' value='{{ quotemaker.path }}' />
-                    <button class='btn btn-danger' type='submit'>Delete</button>
-                </form>
+                    <button class='btn btn-danger' data-toggle='modal' data-target='#confirm-delete-modal'>Delete</button>
                 {% endif %}
                     </div>
                 </div>
             </div>
         </div>
+        {% if user.is_superuser %}
+        <div class='list-group'>
+            <div class='list-group-item'>
+                Path: <pre>{{ quotemaker.path }}</pre>
+            </div>
+            <div class='list-group-item'>
+                Name: <pre>{{ quotemaker.name }}</pre>
+            </div>
+            <div class='list-group-item'>
+                Tagline: <pre>{{ quotemaker.tagline }}</pre>
+            </div>
+            <div class='list-group-item'>
+                Corpus: <pre>{{ quotemaker.corpus}}</pre>
+            </div>
+        </div>
+        {% endif %}
     {% endblock %}
 
     {% block scripts %}

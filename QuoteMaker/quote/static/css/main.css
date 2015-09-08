@@ -28,10 +28,10 @@
 	color: #80A3C2;
 }
 
-//.form-wrap {
-//    margin-top: 0px;
-//    margin-bottom: 80px;
-//}
+#about-text {
+    line-height: 1.75;
+    font-size: 2rem;
+}
 
 .field-pair-top {
     border-bottom-left-radius: 0px;

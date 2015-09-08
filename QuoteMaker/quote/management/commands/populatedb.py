@@ -5,12 +5,14 @@ import sys
 
 
 _quotemakers = [
-    ('Guy Fieri', 'guyfieri.txt', 'guyfieri', 'Welcome to Flavortown!'),
-    ('Senor Cardgage', 'cardgage.txt', 'cardgage', 'Dump Tell No Mandy!'),
-    ('Homsar', 'homsar.txt', 'homsar', 'Legitimate Business!'),
-    ('Hacker News', 'hackernews.txt', 'hackernews', 'Presented by Y Combinator!'),
-    ('Drew Gottlieb', 'drewgottlieb.txt', 'drew', 'Hmm.'),
-    ('George Costanza', 'george.txt', 'costanza', 'Moops!'),
+    ('Guy Fieri', 'guyfieri.txt', 'Welcome to Flavortown!'),
+    ('Senor Cardgage', 'cardgage.txt', 'Dump Tell No Mandy!'),
+    ('Homsar', 'homsar.txt', 'Legitimate Business!'),
+    ('Hacker News', 'hackernews.txt', 'Presented by Y Combinator!'),
+    ('Drew Gottlieb', 'drewgottlieb.txt', 'Hmm.'),
+    ('George Costanza', 'george.txt', 'Moops!'),
+    ('Jony Ive', 'jonyive.txt', "There are a thousand no's for every yes."),
+    ('Albert Einstein', 'einstein.txt', "e = mc²"),
 ]
 
 class Command(BaseCommand):
@@ -24,9 +26,10 @@ class Command(BaseCommand):
                 first_name="Harlan", last_name="Haskins")
         QuoteMaker.objects.all().delete()
 
-        for name, filename, path, tagline in _quotemakers:
+        for name, filename, tagline in _quotemakers:
             with open(filename) as corpus_file:
-                QuoteMaker.objects.create(name=name, path=path, corpus=corpus_file.read(), tagline=tagline, submitter=user)
+                QuoteMaker.objects.create(name=name, corpus=corpus_file.read(), tagline=tagline, submitter=user)
+                print("Added %s" % name)
 
     def handle(self, *args, **options):
         self._create_quotemakers()
