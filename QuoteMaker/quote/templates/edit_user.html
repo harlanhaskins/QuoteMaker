@@ -16,15 +16,15 @@
         <input type="text" name="email" value="{{ requested_user.email }}" class="form-control" placeholder="Email" required = "" />
 
         {% if is_signup %}
-            <label>Password</label>
-            <input type="password" name="password" class="form-control password" placeholder="Password"  required = "" />
-            <input type="password" name="confirm_password" class="form-control confirm-password" placeholder="Confirm Password" required = "" />
+        <label>Password</label>
+        <input type="password" name="password" class="form-control field-pair-top" placeholder="Password"  required = "" />
+        <input type="password" name="confirm_password" class="form-control field-pair-bottom" placeholder="Confirm Password" required = "" />
         {% endif %}
         <br />
-        </div>
-        <br />
-        <button class="btn btn-lg btn-primary btn-block signup-btn" type="submit">
-            Save
-        </button>
-    </form>
+    </div>
+    <br />
+    <button class="btn btn-lg btn-primary btn-block signup-btn" type="submit">
+        Save
+    </button>
+</form>
 </div>

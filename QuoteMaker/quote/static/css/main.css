@@ -50,8 +50,16 @@
     margin-top: 0;
 }
 
-.password {
-    margin-bottom: 0;
+.field-pair-top {
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    margin-bottom: -1px;
+}
+
+.field-pair-bottom {
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    margin-top: -2px;
 }
 
 a {
@@ -86,7 +94,6 @@ select {
    -moz-appearance: none;
    appearance: none;
 }
-
 
 .remove {
     position: relative;
