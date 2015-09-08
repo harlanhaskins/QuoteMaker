@@ -138,7 +138,7 @@ def create(request):
     if request.POST:
         quotemaker, error = handle_create_quotemaker(request, request.POST)
         if quotemaker:
-            return redirect('quote:quote', path=quotemaker.path)
+            return redirect('quote:quote', path=quotemaker.path())
         elif error:
             context['error_message'] = error
         else:
