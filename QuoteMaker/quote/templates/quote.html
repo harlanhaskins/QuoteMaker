@@ -32,8 +32,12 @@ var name = "{{ quotemaker.name }}QuoteMaker";
             <div class='text-center'>
                 <a id="twitter" class="btn btn-info" href="#" target="_blank">Tweet This!</a>
                 <a id="facebook" class="btn btn-primary" href="#" target="_blank">Facebook It!</a>
-                {% if user == quotemaker.submitter %}
-                <a class='btn btn-danger' href="{% url 'quote:delete' quotemaker.path %}">Delete</a>
+                {% if user == quotemaker.submitter or user.is_superuser %}
+                <form action='{% url 'quote:delete' %}' method='post' charset='utf-8'>
+                    {% csrf_token %}
+                    <input type='hidden' name='path' value='{{ quotemaker.path }}' />
+                    <button class='btn btn-danger' type='submit'>Delete</button>
+                </form>
                 {% endif %}
                     </div>
                 </div>

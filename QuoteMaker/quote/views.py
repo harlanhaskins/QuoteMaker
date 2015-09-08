@@ -166,12 +166,16 @@ def search(request):
 
 
 @login_required
-def delete(request, path):
-    quotemaker = get_object_or_404(QuoteMaker, path=path)
-    if request.user != quotemaker.submitter:
+def delete(request):
+    path = None
+    if request.POST:
+        path = request.POST.get('path')
+        quotemaker = get_object_or_404(QuoteMaker, path=path)
+        if request.user == quotemaker.submitter or request.user.is_superuser:
+            quotemaker.deactivate()
+            return redirect('quote:home')
         raise PermissionDenied
-    quotemaker.deactivate()
-    return redirect('quote:home')
+    raise Http404
 
 
 def home(request):
