@@ -61,10 +61,15 @@ var name = "{{ quotemaker.name }}";
         </div>
         {% if user.is_superuser %}
         <div class='list-group'>
+            <div class='list-group-item'>
+                corpus: &nbsp; <a href="{% url 'quote:corpus' quotemaker.path %}" class='btn btn-primary'>Download</a>
+            </div>
             {% for field, value in quotemaker.attrs %}
+            {% if field != 'corpus' %}
             <div class='list-group-item'>
                 {{ field }}: <pre>{{ value }}</pre>
             </div>
+            {% endif %}
             {% endfor %}
         </div>
         {% endif %}

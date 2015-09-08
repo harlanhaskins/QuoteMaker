@@ -14,6 +14,7 @@ urlpatterns = patterns('',
     url(r'api/quotes/(?P<path>.+)/?$', api.quote, name='api_quote'),
     url(r'delete/?$', views.delete, name='delete'),
     url(r'about/?$', views.about, name='about'),
-    url(r'(?P<path>.+)/?$', views.quote, name='quote'),
+    url(r'(?P<path>[^/]+)/corpus/?$', views.download_corpus, name='corpus'),
+    url(r'(?P<path>[^/]+)/?$', views.quote, name='quote'),
     url(r'^/?$', views.home, name='home'),
 )

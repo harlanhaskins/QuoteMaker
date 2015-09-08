@@ -7,6 +7,7 @@ from .form_utilities import *
 from .models import *
 from path_maker import decode_id
 import datetime
+import checks
 import json
 import time
 
@@ -177,6 +178,16 @@ def delete(request):
             return redirect('quote:home')
         raise PermissionDenied
     raise Http404
+
+
+@user_passes_test(checks.admin_check)
+def download_corpus(request, path):
+    identifier = decode_id(path)
+    quotemaker = get_object_or_404(QuoteMaker, pk=identifier, active=True)
+    response = HttpResponse(quotemaker.corpus, content_type='application/force-download')
+    sanitized_name = ''.join(ch for ch in quotemaker.name if ch.isalnum()).lower()
+    response['Content-disposition'] = 'attachment; filename="%s.txt"' % sanitized_name
+    return response
 
 
 def about(request):
