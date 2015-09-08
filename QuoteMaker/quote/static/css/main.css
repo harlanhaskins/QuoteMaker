@@ -92,3 +92,9 @@ select {
     font-size: 1.5rem;
     margin-top: 25px;
 }
+
+@media(max-width: 767px) {
+    #new-quote {
+        width: 100%;
+    }
+}

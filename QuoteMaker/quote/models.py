@@ -26,6 +26,7 @@ class QuoteMaker(models.Model):
     corpus = models.TextField()
     submitter = models.ForeignKey(User)
     active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now=True)
 
     def new_string(self):
         return MarkovCache.get(self.path).generateString()

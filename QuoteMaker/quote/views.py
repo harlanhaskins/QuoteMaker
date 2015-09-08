@@ -181,6 +181,6 @@ def delete(request):
 def home(request):
     context = {
         'navbar': 'home',
-        'quotemakers': QuoteMaker.objects.filter(active=True).all()
+        'quotemakers': QuoteMaker.objects.filter(active=True).order_by('-created_at').all()[:30]
     }
     return render(request, 'list.html', context)
