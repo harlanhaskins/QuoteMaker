@@ -13,12 +13,12 @@
 </form>
 <br />
 <div class='list-group'>
-    {% if characters %}
-        {% for character in characters %}
-            <a href="{% url 'quote:quote' character.path %}" class='list-group-item'>
-                <span class='name'>{{ character.name }}</span>
+    {% if quotemakers %}
+        {% for quotemaker in quotemakers %}
+            <a href="{% url 'quote:quote' quotemaker.path %}" class='list-group-item'>
+                <span class='name'>{{ quotemaker.name }}</span>
                 <br />
-                <span class='subtitle'>{{ character.tagline }}</span>
+                <span class='subtitle'>{{ quotemaker.tagline }}</span>
             </a>
         {% endfor %}
     {% else %}

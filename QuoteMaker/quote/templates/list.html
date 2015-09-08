@@ -18,9 +18,9 @@
 <br />
 <br />
 <div class='list-group'>
-    {% for character in characters %}
-    <a href='/{{ character.path }}' class='list-group-item col-md-6 col-sm-12'>
-        <span class='name'>{{ character.name }}</span><br /><span class='subtitle'>{{ character.tagline }}</span>
+    {% for quotemaker in quotemakers %}
+    <a href='/{{ quotemaker.path }}' class='list-group-item col-md-6 col-sm-12'>
+        <span class='name'>{{ quotemaker.name }}</span><br /><span class='subtitle'>{{ quotemaker.tagline }}</span>
     </a>
     {% endfor %}
 </div >

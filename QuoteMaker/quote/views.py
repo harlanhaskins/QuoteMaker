@@ -126,17 +126,17 @@ def handle_user_form(request, body, user=None):
 
 
 def quote(request, path):
-    character = get_object_or_404(Homestarkov, path=path)
-    return render(request, 'quote.html', {'user': request.user, 'character': character})
+    quotemaker = get_object_or_404(QuoteMaker, path=path)
+    return render(request, 'quote.html', {'user': request.user, 'quotemaker': quotemaker})
 
 
 @login_required
 def create(request):
     context = {'user': request.user}
     if request.POST:
-        character, error = handle_create_quotemaker(request, request.POST)
-        if character:
-            return redirect('quote:quote', path=character.path)
+        quotemaker, error = handle_create_quotemaker(request, request.POST)
+        if quotemaker:
+            return redirect('quote:quote', path=quotemaker.path)
         elif error:
             context['error_message'] = error
         else:
@@ -150,8 +150,8 @@ def handle_create_quotemaker(request, body):
     if not all([name, body, corpus]):
         return None, "All fields are required"
     path = name.lower().replace(" ", '-')
-    character = Homestarkov.objects.create(name=name, corpus=corpus, path=path, tagline=tagline, submitter=request.user)
-    return character, None
+    quotemaker = QuoteMaker.objects.create(name=name, corpus=corpus, path=path, tagline=tagline, submitter=request.user)
+    return quotemaker, None
 
 
 def search(request):
@@ -161,22 +161,22 @@ def search(request):
 
     quotemakers = []
     if query:
-        quotemakers = watson.filter(Homestarkov, query)
-    return render(request, 'search.html', {'user': request.user, 'characters': quotemakers, 'q': query})
+        quotemakers = watson.filter(QuoteMaker, query)
+    return render(request, 'search.html', {'user': request.user, 'quotemakers': quotemakers, 'q': query})
 
 
 @login_required
 def delete(request, path):
-    character = get_object_or_404(Homestarkov, path=path)
-    if request.user != character.submitter:
+    quotemaker = get_object_or_404(QuoteMaker, path=path)
+    if request.user != quotemaker.submitter:
         raise PermissionDenied
-    character.deactivate()
+    quotemaker.deactivate()
     return redirect('quote:home')
 
 
 def home(request):
     context = {
         'navbar': 'home',
-        'characters': Homestarkov.objects.filter(active=True).all()
+        'quotemakers': QuoteMaker.objects.filter(active=True).all()
     }
     return render(request, 'list.html', context)

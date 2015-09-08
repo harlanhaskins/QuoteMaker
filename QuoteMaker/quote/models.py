@@ -11,15 +11,15 @@ class MarkovCache(object):
     @classmethod
     @lrudecorator(100)
     def get(cls, path):
-        query = Homestarkov.objects.filter(path=path)
+        query = QuoteMaker.objects.filter(path=path)
         if not query.exists():
             return None
-        character = query.get()
+        quotemaker = query.get()
         _generator = MarkovChain("./markovgeneratorfiles/markov-%s" % path)
-        _generator.generateDatabase(character.corpus)
+        _generator.generateDatabase(quotemaker.corpus)
         return _generator
 
-class Homestarkov(models.Model):
+class QuoteMaker(models.Model):
     path = models.CharField(unique=True, max_length=255)
     name = models.CharField(max_length=255)
     tagline = models.CharField(max_length=255)
@@ -41,4 +41,4 @@ class Homestarkov(models.Model):
             "tagline": self.tagline
         }
 
-watson.register(Homestarkov.objects.filter(active=True))
+watson.register(QuoteMaker.objects.filter(active=True))

@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 
-{% block title %}{{character.name}} Quote Generator{% endblock %}
+{% block title %}{{quotemaker.name}} Quote Generator{% endblock %}
 {% block extra %}
 <script>
-var frontendUrl = "https://quotemaker.co/{{ character.path }}";
-var apiUrl = "https://quotemaker.co/api/quotes/{{ character.path }}";
+var frontendUrl = "https://quotemaker.co/{{ quotemaker.path }}";
+var apiUrl = "https://quotemaker.co/api/quotes/{{ quotemaker.path }}";
 </script>
 {% endblock %}
 
@@ -13,8 +13,8 @@ var apiUrl = "https://quotemaker.co/api/quotes/{{ character.path }}";
 <div class="row">
     <div class="col-md-12">
         <h1 class="title text-center">
-            {{ character.name }} Quote Generator<br>
-            <small>&quot;{{ character.tagline }}&quot;</small>
+            {{ quotemaker.name }} Quote Generator<br>
+            <small>&quot;{{ quotemaker.tagline }}&quot;</small>
         </h1>
     </div>
     <br><br>
@@ -22,7 +22,7 @@ var apiUrl = "https://quotemaker.co/api/quotes/{{ character.path }}";
         <div class="jumbotron">
             <div class='text-center'>
                 <h1 id="quote" class="mcgarg">
-                    &quot;{{ character.new_string }}&quot;
+                    &quot;{{ quotemaker.new_string }}&quot;
                 </h1>
                 <br><br>
                 <button id="generate" onclick='$(this).getQuote();'class="btn btn-success btn-xl">More Please!</button>
@@ -31,8 +31,8 @@ var apiUrl = "https://quotemaker.co/api/quotes/{{ character.path }}";
             <div class='text-center'>
                 <a id="twitter" class="btn btn-info" href="#" target="_blank">Tweet This!</a>
                 <a id="facebook" class="btn btn-primary" href="#" target="_blank">Facebook It!</a>
-                {% if user == character.submitter %}
-                <a class='btn btn-danger' href="{% url 'quote:delete' character.path %}">Delete</a>
+                {% if user == quotemaker.submitter %}
+                <a class='btn btn-danger' href="{% url 'quote:delete' quotemaker.path %}">Delete</a>
                 {% endif %}
                     </div>
                 </div>

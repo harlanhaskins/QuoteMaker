@@ -4,7 +4,7 @@ import datetime
 import sys
 
 
-_characters = [
+_quotemakers = [
     ('Guy Fieri', 'guyfieri.txt', 'guyfieri', 'Welcome to Flavortown!'),
     ('Senor Cardgage', 'cardgage.txt', 'cardgage', 'Dump Tell No Mandy!'),
     ('Homsar', 'homsar.txt', 'homsar', 'Legitimate Business!'),
@@ -17,16 +17,16 @@ class Command(BaseCommand):
     args = '<foo bar ...>'
     help = 'our help string comes here'
 
-    def _create_characters(self):
+    def _create_quotemakers(self):
         email = 'harlan@harlanhaskins.com'
         user = User.objects.create_superuser(username=email,
                 email=email, password=sys.argv[2],
                 first_name="Harlan", last_name="Haskins")
-        Homestarkov.objects.all().delete()
+        QuoteMaker.objects.all().delete()
 
-        for name, filename, path, tagline in _characters:
+        for name, filename, path, tagline in _quotemakers:
             with open(filename) as corpus_file:
-                Homestarkov.objects.create(name=name, path=path, corpus=corpus_file.read(), tagline=tagline, submitter=user)
+                QuoteMaker.objects.create(name=name, path=path, corpus=corpus_file.read(), tagline=tagline, submitter=user)
 
     def handle(self, *args, **options):
-        self._create_characters()
+        self._create_quotemakers()
