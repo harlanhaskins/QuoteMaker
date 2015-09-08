@@ -3,5 +3,6 @@ markov-*
 *.conf
 *.txt
 *.sqlite3
+.idea/
 /markovgeneratorfiles
 .virtualenv

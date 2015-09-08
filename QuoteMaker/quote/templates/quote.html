@@ -6,14 +6,15 @@
 <script>
 var frontendUrl = "https://quotemaker.co/{{ quotemaker.path }}";
 var apiUrl = "https://quotemaker.co/api/quotes/{{ quotemaker.path }}";
+var name = "{{ quotemaker.name }}QuoteMaker";
 </script>
 {% endblock %}
 
 {% block content %}
 <div class="row">
     <div class="col-md-12">
-        <h1 class="title text-center">
-            {{ quotemaker.name }} Quote Generator<br>
+        <h1 id='quote-title' class="title text-center">
+            {{ quotemaker.name }} Quote<strong>Maker</strong><br>
             <small>&quot;{{ quotemaker.tagline }}&quot;</small>
         </h1>
     </div>

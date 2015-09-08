@@ -21,8 +21,9 @@ $.fn.getQuote = function () {
 
 $.fn.populateSocialMedia = function () {
     var quote = $.trim($('#quote').html());
-    $("#twitter").attr("href", twitterUrl + "?text=" + quote + "&hashtags=QuoteMaker&url=" + frontendUrl);
-    $("#facebook").attr("href", facebookUrl + "?t=" + quote + "&u=" + frontendUrl);
+    var hashtag = name.replace(/ /g,'');
+    $("#twitter").attr("href", twitterUrl + "?text=" + quote + "&hashtags=" + hashtag + "&url=" + frontendUrl);
+    $("#facebook").attr("href", facebookUrl + "?p[title]=" + quote + " " + hashtag+ "&u=" + frontendUrl);
 };
 
 $(document).ready(function() {
